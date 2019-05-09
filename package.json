@@ -4,6 +4,7 @@
   "description": "Logger for Browser!",
   "main": "index.js",
   "scripts": {
+    "build": "cross-env BABEL_ENV=production babel src -w -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +20,12 @@
   "bugs": {
     "url": "https://github.com/leegeunhyeok/bogger/issues"
   },
-  "homepage": "https://github.com/leegeunhyeok/bogger#readme"
+  "homepage": "https://github.com/leegeunhyeok/bogger#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "babel-preset-minify": "^0.5.0",
+    "cross-env": "^5.2.0"
+  }
 }
