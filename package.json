@@ -1,0 +1,23 @@
+{
+  "name": "bogger",
+  "version": "0.0.1",
+  "description": "Logger for Browser!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leegeunhyeok/bogger.git"
+  },
+  "keywords": [
+    "log",
+    "logger"
+  ],
+  "author": "leegeunhyeok",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leegeunhyeok/bogger/issues"
+  },
+  "homepage": "https://github.com/leegeunhyeok/bogger#readme"
+}
