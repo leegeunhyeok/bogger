@@ -27,10 +27,30 @@
 
 
 const COLOR_SCHEME = {
+  debug: {
+    color: '#cccccc',
+    darker: '#a3a3a3',
+    text: '#111111'
+  },
+  info: {
+    color: '#63ace5',
+    darker: '#4F89B7',
+    text: '#ffffff'
+  },
+  warning: {
+    color: '#e9d700',
+    darker: '#baac00',
+    text: '#ffffff'
+  },
   error: {
     color: '#ff6347',
     darker: '#cc4f38',
-    text: '#fefefe'
+    text: '#ffffff'
+  },
+  critical: {
+    color: '#b266b2',
+    darker: '#8E518E',
+    text: '#ffffff'
   }
 }
  
