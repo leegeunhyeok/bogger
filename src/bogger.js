@@ -100,6 +100,9 @@ function Bogger (store) {
     const log = generateTemplate('critical', arguments)
     console.log(log.msg, log.style[0], log.style[1])
   }
+
+  this.getHistory = _historyManager.get
+  this.clearHistory = _historyManager.clear
 }
 
 const boggerInit = (option = {}) => {
