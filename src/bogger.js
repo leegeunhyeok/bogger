@@ -79,44 +79,44 @@
         ]
       }
     }
-  
+
     this.info = function () {
       const log = generateTemplate('info', arguments)
-      console.log(log.msg, log.style[0], log.style[1])
+      return [log.msg, ...log.style]
     }
   
     this.debug = function () {
       const log = generateTemplate('debug', arguments)
-      console.log(log.msg, log.style[0], log.style[1])
+      return [log.msg, ...log.style]
     }
   
     this.success = function () {
       const log = generateTemplate('success', arguments)
-      console.log(log.msg, log.style[0], log.style[1])
+      return [log.msg, ...log.style]
     }
   
     this.warning = function () {
       const log = generateTemplate('warning', arguments)
-      console.log(log.msg, log.style[0], log.style[1])
+      return [log.msg, ...log.style]
     }
   
     this.error = function () {
       const log = generateTemplate('error', arguments)
-      console.log(log.msg, log.style[0], log.style[1])
+      return [log.msg, ...log.style]
     }
   
     this.critical = function () {
       const log = generateTemplate('critical', arguments)
-      console.log(log.msg, log.style[0], log.style[1])
+      return [log.msg, ...log.style]
     }
   }
   
   const BIND = 'log'
-  if (this.hasOwnProperty(BIND)) {
+  if (window.hasOwnProperty(BIND)) {
     console.error(`global object already has '${BIND}' property`)
   }
 
-  Object.defineProperty(this, BIND, {
+  Object.defineProperty(window, BIND, {
     value: new Bogger()
   })
 })()
