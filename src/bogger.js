@@ -34,7 +34,8 @@ const COLOR_SCHEME = {
   }
 }
  
-function Bogger () {
+function Bogger (store) {
+  var _logStore = store
   var _historyManager = new function () {
     var _logHistory = []
     
@@ -57,6 +58,10 @@ function Bogger () {
     const text = COLOR_SCHEME[level].text
     const color = COLOR_SCHEME[level].color
     const darker = COLOR_SCHEME[level].darker
+
+    if (_logStore) {
+      _historyManager.add(level, msg)
+    }
 
     return {
       msg: `%c ${level.toUpperCase()} %c ${msg} `,
@@ -97,12 +102,13 @@ function Bogger () {
   }
 }
 
-const boggerInit = (bindSymbol = 'log') => {
-  if (this.hasOwnProperty(bindSymbol)) {
-    console.error(`global object already has '${bindSymbol}' property`)
+const boggerInit = (option = {}) => {
+  const bind = option.bind || 'log'
+  if (this.hasOwnProperty(bind)) {
+    console.error(`global object already has '${bind}' property`)
   }
 
-  Object.defineProperty(this, bindSymbol, {
-    value: new Bogger()
+  Object.defineProperty(this, bind, {
+    value: new Bogger(option.store)
   })
 }
