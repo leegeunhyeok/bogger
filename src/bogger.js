@@ -37,6 +37,11 @@ const COLOR_SCHEME = {
     darker: '#4F89B7',
     text: '#ffffff'
   },
+  success: {
+    color: '#0ad48b',
+    darker: '#08A96F',
+    text: '#ffffff'
+  },
   warning: {
     color: '#e9d700',
     darker: '#baac00',
@@ -103,6 +108,11 @@ function Bogger (store) {
 
   this.debug = function () {
     const log = generateTemplate('debug', arguments)
+    console.log(log.msg, log.style[0], log.style[1])
+  }
+
+  this.success = function () {
+    const log = generateTemplate('success', arguments)
     console.log(log.msg, log.style[0], log.style[1])
   }
 
