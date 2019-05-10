@@ -4,5 +4,6 @@
     "production": {
       "presets": ["minify"]
     }
-  }
+  },
+  "comments": false
 }

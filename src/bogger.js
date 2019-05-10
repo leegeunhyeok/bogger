@@ -70,12 +70,12 @@
       return {
         msg: `%c ${level.toUpperCase()} %c ${msg} `,
         style: [
-          `padding: 1px;color: ${text};
-          background-color: ${darker};
-          border-radius: 3px 0 0 3px;`,
-          `padding: 1px;color: ${text};
-          background-color: ${color};
-          border-radius: 0 3px 3px 0;`
+          `padding: 1px;color: ${text};` +
+          `background-color: ${darker};` +
+          `border-radius: 3px 0 0 3px;`,
+          `padding: 1px;color: ${text};` +
+          `background-color: ${color};` +
+          `border-radius: 0 3px 3px 0;`
         ]
       }
     }
