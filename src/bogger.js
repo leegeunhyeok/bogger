@@ -24,3 +24,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+const boggerInit = (bindSymbol = 'log') => {
+  if (this.hasOwnProperty(bindSymbol)) {
+    console.error(`global object already has '${bindSymbol}' property`)
+  }
+
+  Object.defineProperty(this, bindSymbol, {
+    value: {
+      debug,
+      info,
+      warning,
+      error,
+      critical
+    }
+  })
+}
