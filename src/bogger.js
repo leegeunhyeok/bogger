@@ -25,123 +25,98 @@
  * THE SOFTWARE.
  */
 
-
-const COLOR_SCHEME = {
-  debug: {
-    color: '#cccccc',
-    darker: '#a3a3a3',
-    text: '#111111'
-  },
-  info: {
-    color: '#63ace5',
-    darker: '#4F89B7',
-    text: '#ffffff'
-  },
-  success: {
-    color: '#0ad48b',
-    darker: '#08A96F',
-    text: '#ffffff'
-  },
-  warning: {
-    color: '#e9d700',
-    darker: '#baac00',
-    text: '#ffffff'
-  },
-  error: {
-    color: '#ff6347',
-    darker: '#cc4f38',
-    text: '#ffffff'
-  },
-  critical: {
-    color: '#b266b2',
-    darker: '#8E518E',
-    text: '#ffffff'
+(function () {
+  const COLOR_SCHEME = {
+    debug: {
+      color: '#cccccc',
+      darker: '#a3a3a3',
+      text: '#111111'
+    },
+    info: {
+      color: '#63ace5',
+      darker: '#4F89B7',
+      text: '#ffffff'
+    },
+    success: {
+      color: '#0ad48b',
+      darker: '#08A96F',
+      text: '#ffffff'
+    },
+    warning: {
+      color: '#e9d700',
+      darker: '#baac00',
+      text: '#ffffff'
+    },
+    error: {
+      color: '#ff6347',
+      darker: '#cc4f38',
+      text: '#ffffff'
+    },
+    critical: {
+      color: '#b266b2',
+      darker: '#8E518E',
+      text: '#ffffff'
+    }
   }
-}
- 
-function Bogger (store) {
-  var _logStore = store
-  var _historyManager = new function () {
-    var _logHistory = []
-    
-    return {
-      add (level, message) {
-        _logHistory.push({ level, message })
-      },
-      get () {
-        return _logHistory
-      },
-      clear () {
-        _logHistory = []
+   
+  function Bogger () {
+    var generateTemplate = function (level, args) {
+      const argArray = Array.prototype.slice.call(args)
+      const msg = argArray.join(' ')
+      const text = COLOR_SCHEME[level].text
+      const color = COLOR_SCHEME[level].color
+      const darker = COLOR_SCHEME[level].darker
+  
+      return {
+        msg: `%c ${level.toUpperCase()} %c ${msg} `,
+        style: [
+          `padding: 1px;color: ${text};
+          background-color: ${darker};
+          border-radius: 3px 0 0 3px;`,
+          `padding: 1px;color: ${text};
+          background-color: ${color};
+          border-radius: 0 3px 3px 0;`
+        ]
       }
     }
-  }
-
-  var generateTemplate = function (level, args) {
-    const argArray = Array.prototype.slice.call(args)
-    const msg = argArray.join(' ')
-    const text = COLOR_SCHEME[level].text
-    const color = COLOR_SCHEME[level].color
-    const darker = COLOR_SCHEME[level].darker
-
-    if (_logStore) {
-      _historyManager.add(level, msg)
+  
+    this.info = function () {
+      const log = generateTemplate('info', arguments)
+      console.log(log.msg, log.style[0], log.style[1])
     }
-
-    return {
-      msg: `%c ${level.toUpperCase()} %c ${msg} `,
-      style: [
-        `padding: 1px;color: ${text};
-        background-color: ${darker};
-        border-radius: 3px 0 0 3px;`,
-        `padding: 1px;color: ${text};
-        background-color: ${color};
-        border-radius: 0 3px 3px 0;`
-      ]
+  
+    this.debug = function () {
+      const log = generateTemplate('debug', arguments)
+      console.log(log.msg, log.style[0], log.style[1])
+    }
+  
+    this.success = function () {
+      const log = generateTemplate('success', arguments)
+      console.log(log.msg, log.style[0], log.style[1])
+    }
+  
+    this.warning = function () {
+      const log = generateTemplate('warning', arguments)
+      console.log(log.msg, log.style[0], log.style[1])
+    }
+  
+    this.error = function () {
+      const log = generateTemplate('error', arguments)
+      console.log(log.msg, log.style[0], log.style[1])
+    }
+  
+    this.critical = function () {
+      const log = generateTemplate('critical', arguments)
+      console.log(log.msg, log.style[0], log.style[1])
     }
   }
-
-  this.info = function () {
-    const log = generateTemplate('info', arguments)
-    console.log(log.msg, log.style[0], log.style[1])
+  
+  const BIND = 'log'
+  if (this.hasOwnProperty(BIND)) {
+    console.error(`global object already has '${BIND}' property`)
   }
 
-  this.debug = function () {
-    const log = generateTemplate('debug', arguments)
-    console.log(log.msg, log.style[0], log.style[1])
-  }
-
-  this.success = function () {
-    const log = generateTemplate('success', arguments)
-    console.log(log.msg, log.style[0], log.style[1])
-  }
-
-  this.warning = function () {
-    const log = generateTemplate('warning', arguments)
-    console.log(log.msg, log.style[0], log.style[1])
-  }
-
-  this.error = function () {
-    const log = generateTemplate('error', arguments)
-    console.log(log.msg, log.style[0], log.style[1])
-  }
-
-  this.critical = function () {
-    const log = generateTemplate('critical', arguments)
-    console.log(log.msg, log.style[0], log.style[1])
-  }
-
-  this.getHistory = _historyManager.get
-  this.clearHistory = _historyManager.clear
-}
-
-const boggerInit = (option = {}) => {
-  const bind = option.bind || 'log'
-  if (this.hasOwnProperty(bind)) {
-    console.error(`global object already has '${bind}' property`)
-  }
-
-  Object.defineProperty(this, bind, {
-    value: new Bogger(option.store)
+  Object.defineProperty(this, BIND, {
+    value: new Bogger()
   })
-}
+})()
