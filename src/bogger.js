@@ -29,7 +29,8 @@
 const COLOR_SCHEME = {
   error: {
     color: '#ff6347',
-    darker: '#cc4f38'
+    darker: '#cc4f38',
+    text: '#fefefe'
   }
 }
  
@@ -50,24 +51,49 @@ function Bogger () {
     }
   }
 
+  var generateTemplate = function (level, args) {
+    const argArray = Array.prototype.slice.call(args)
+    const msg = argArray.join(' ')
+    const text = COLOR_SCHEME[level].text
+    const color = COLOR_SCHEME[level].color
+    const darker = COLOR_SCHEME[level].darker
+
+    return {
+      msg: `%c ${level.toUpperCase()} %c ${msg} `,
+      style: [
+        `padding: 1px;color: ${text};
+        background-color: ${darker};
+        border-radius: 3px 0 0 3px;`,
+        `padding: 1px;color: ${text};
+        background-color: ${color};
+        border-radius: 0 3px 3px 0;`
+      ]
+    }
+  }
+
   this.info = function () {
-    
+    const log = generateTemplate('info', arguments)
+    console.log(log.msg, log.style[0], log.style[1])
   }
 
   this.debug = function () {
-    
+    const log = generateTemplate('debug', arguments)
+    console.log(log.msg, log.style[0], log.style[1])
   }
 
   this.warning = function () {
-    
+    const log = generateTemplate('warning', arguments)
+    console.log(log.msg, log.style[0], log.style[1])
   }
 
   this.error = function () {
-    
+    const log = generateTemplate('error', arguments)
+    console.log(log.msg, log.style[0], log.style[1])
   }
 
   this.critical = function () {
-    
+    const log = generateTemplate('critical', arguments)
+    console.log(log.msg, log.style[0], log.style[1])
   }
 }
 
