@@ -25,6 +25,13 @@
  * THE SOFTWARE.
  */
 
+
+const COLOR_SCHEME = {
+  error: {
+    color: '#ff6347',
+    darker: '#cc4f38'
+  }
+}
  
 function Bogger () {
   this.info = function () {
