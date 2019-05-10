@@ -25,18 +25,35 @@
  * THE SOFTWARE.
  */
 
+ 
+function Bogger () {
+  this.info = function () {
+    
+  }
+
+  this.debug = function () {
+    
+  }
+
+  this.wraning = function () {
+    
+  }
+
+  this.error = function () {
+    
+  }
+
+  this.critical = function () {
+    
+  }
+}
+
 const boggerInit = (bindSymbol = 'log') => {
   if (this.hasOwnProperty(bindSymbol)) {
     console.error(`global object already has '${bindSymbol}' property`)
   }
 
   Object.defineProperty(this, bindSymbol, {
-    value: {
-      debug,
-      info,
-      warning,
-      error,
-      critical
-    }
+    value: new Bogger()
   })
 }
