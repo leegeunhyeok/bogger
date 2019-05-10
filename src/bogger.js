@@ -58,7 +58,7 @@ function Bogger () {
     
   }
 
-  this.wraning = function () {
+  this.warning = function () {
     
   }
 
