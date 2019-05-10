@@ -34,6 +34,22 @@ const COLOR_SCHEME = {
 }
  
 function Bogger () {
+  var _historyManager = new function () {
+    var _logHistory = []
+    
+    return {
+      add (level, message) {
+        _logHistory.push({ level, message })
+      },
+      get () {
+        return _logHistory
+      },
+      clear () {
+        _logHistory = []
+      }
+    }
+  }
+
   this.info = function () {
     
   }
