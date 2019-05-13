@@ -1,6 +1,6 @@
 {
   "name": "bogger",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Logger for Browser!",
   "main": "index.js",
   "scripts": {

@@ -1,6 +1,6 @@
 /*
  * @license
- * Bogger v0.0.1, logger for browser (https://github.com/leegeunhyeok/bogger)
+ * Bogger v1.0.0, logger for browser (https://github.com/leegeunhyeok/bogger)
  * 
  * MIT License
  * 
