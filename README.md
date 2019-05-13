@@ -13,7 +13,7 @@
 
 ## Usage
 
-[Download]()
+[Download](https://github.com/leegeunhyeok/bogger/releases/latest)
 
 ```html
 <script src="bogger.min.js"></script>
